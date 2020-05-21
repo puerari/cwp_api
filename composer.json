@@ -1,0 +1,30 @@
+{
+  "name": "puerari/cwp_api",
+  "description": "CWP_API is a PHP class that abstracts the interaction with CentOS Web Panel through its API",
+  "keywords": [
+    "Puerari",
+    "CWP",
+    "API",
+    "CentOS",
+    "Web Panel"
+  ],
+  "homepage": "https://www.linkedin.com/in/leandropuerari",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Leandro Puerari",
+      "email": "leandro@puerari.com.br",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^5.6.*",
+    "ext-pdo": "*",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Puerari\\Cwp\\": "src"
+    }
+  }
+}

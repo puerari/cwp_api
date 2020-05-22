@@ -1,6 +1,6 @@
 {
   "name": "puerari/cwp_api",
-  "description": "CWP_API is a PHP class that abstracts the interaction with CentOS Web Panel through its API",
+  "description": "CWP_API is a PHP package that abstracts the interaction with CentOS Web Panel through its API",
   "keywords": [
     "Puerari",
     "CWP",

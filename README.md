@@ -11,9 +11,9 @@
 
 ## About CWP API
 
-###### CWP API is a PHP class that abstracts the interaction with CentOS Web Panel through its API
+###### CWP API is a PHP package that abstracts the interaction with CentOS Web Panel through its API
 
-CWP API é uma classe PHP que abstrai a interação com o Painel de Controle de Hospedagens Web CentOS através de sua API.
+CWP API é um pacote PHP que abstrai a interação com o Painel de Controle de Hospedagens Web CentOS através de sua API.
 
 ## About CWP
 

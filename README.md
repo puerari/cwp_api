@@ -1,4 +1,4 @@
-# CWP API @puerari
+# CWP API, by @puerari
 
 [![Maintainer](http://img.shields.io/badge/maintainer-@leandropuerari-blue.svg?style=flat-square)](https://www.linkedin.com/in/leandropuerari)
 [![Source Code](http://img.shields.io/badge/source-puerari/cwp_api-blue.svg?style=flat-square)](https://github.com/puerari/cwp_api)
@@ -9,11 +9,11 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/puerari/cwp_api.svg?style=flat-square)](https://scrutinizer-ci.com/g/puerari/cwp_api)
 [![Total Downloads](https://img.shields.io/packagist/dt/puerari/cwp_api.svg?style=flat-square)](https://packagist.org/packages/puerari/cwp_api)
 
-## About CWP_API
+## About CWP API
 
-###### CWP_API is a PHP class that abstracts the interaction with CentOS Web Panel through its API
+###### CWP API is a PHP class that abstracts the interaction with CentOS Web Panel through its API
 
-CWP_API é uma classe PHP que abstrai a interação com o Painel de Controle de Hospedagens Web CentOS através de sua API.
+CWP API é uma classe PHP que abstrai a interação com o Painel de Controle de Hospedagens Web CentOS através de sua API.
 
 ## About CWP
 

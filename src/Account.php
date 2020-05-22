@@ -27,8 +27,8 @@ trait Account
      * status -> Error, msj -> Account already exists.
      */
     public function createAccount(string $domain, string $user, string $pass, string $email, string $server_ips,
-                                  string $package = 'default', int $inode = 0, int $limit_nproc = 40, int $limit_nofile = 150,
-                                  bool $autossl = false, bool $encodepass = false, $reseller = null)
+                                    string $package = 'default', int $inode = 0, int $limit_nproc = 40, int $limit_nofile = 150,
+                                    bool $autossl = false, bool $encodepass = false, $reseller = null)
     {
         $autossl = intval($autossl);
         $this->data = compact('domain', 'user', 'pass', 'email', 'package', 'inode', 'limit_nproc', 'limit_nofile', 'server_ips', 'autossl', 'encodepass', 'reseller');
@@ -57,7 +57,7 @@ trait Account
      * status -> Error, msj -> User is root
      */
     public function updateAccount(string $user, string $email, string $server_ips, string $package = 'default',
-                                  string $backup = 'on', int $inode = 0, int $processes = 40, int $openfiles = 150)
+                                    string $backup = 'on', int $inode = 0, int $processes = 40, int $openfiles = 150)
     {
         $this->data = compact('user', 'email', 'server_ips', 'package', 'backup', 'inode', 'processes', 'openfiles');
         $this->data['debug'] = $this->debug;

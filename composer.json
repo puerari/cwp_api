@@ -13,12 +13,11 @@
   "authors": [
     {
       "name": "Leandro Puerari",
-      "email": "leandro@puerari.com.br",
-      "role": "Developer"
+      "email": "leandro@puerari.com.br"
     }
   ],
   "require": {
-    "php": "^7.*",
+    "php": "^7.0",
     "ext-pdo": "*",
     "ext-curl": "*",
     "ext-mbstring": "*"

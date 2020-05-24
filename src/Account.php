@@ -27,11 +27,12 @@ trait Account
      * status -> Error, msj -> Account already exists.
      */
     public function createAccount(string $domain, string $user, string $pass, string $email, string $server_ips,
-                                    string $package = 'default', int $inode = 0, int $limit_nproc = 40, int $limit_nofile = 150,
-                                    bool $autossl = false, bool $encodepass = false, $reseller = null)
+                                  string $package = 'default', int $inode = 0, int $limit_nproc = 40, int $limit_nofile = 150,
+                                  bool $autossl = false, bool $encodepass = false, $reseller = null)
     {
         $autossl = intval($autossl);
-        $this->data = compact('domain', 'user', 'pass', 'email', 'package', 'inode', 'limit_nproc', 'limit_nofile', 'server_ips', 'autossl', 'encodepass', 'reseller');
+        $this->data = compact('domain', 'user', 'pass', 'email', 'package', 'inode',
+            'limit_nproc', 'limit_nofile', 'server_ips', 'autossl', 'encodepass', 'reseller');
         $this->data['debug'] = $this->debug;
         $this->data['action'] = 'add';
         $this->cwpuri = 'account';
@@ -57,7 +58,7 @@ trait Account
      * status -> Error, msj -> User is root
      */
     public function updateAccount(string $user, string $email, string $server_ips, string $package = 'default',
-                                    string $backup = 'on', int $inode = 0, int $processes = 40, int $openfiles = 150)
+                                  string $backup = 'on', int $inode = 0, int $processes = 40, int $openfiles = 150)
     {
         $this->data = compact('user', 'email', 'server_ips', 'package', 'backup', 'inode', 'processes', 'openfiles');
         $this->data['debug'] = $this->debug;
@@ -69,7 +70,7 @@ trait Account
     /**
      * @param string $user : Account username
      * @param string $email : Email Address of the account owner
-     * @param bool $all : (false or emtry / true) Delete all Accounts associated with a reseller (true by default)
+     * @param bool $all : (false or entry / true) Delete all Accounts associated with a reseller (true by default)
      * @return string|bool: false on failure, result on success (JSON / XML)
      * status -> OK
      * status -> Error, msj -> account does not exist
@@ -93,7 +94,7 @@ trait Account
      */
     public function listAccounts($reseller = null, $op = null)
     {
-        $this->data = compact('op', 'reseller');
+        $this->data = compact('reseller', 'op');
         $this->data['debug'] = $this->debug;
         $this->data['action'] = 'list';
         $this->cwpuri = 'account';
@@ -102,7 +103,7 @@ trait Account
 
     /**
      * @param string $user : Account username
-     * @param bool $all : (false or emtry / true) Suspend all Accounts associated with a reseller (true by default)
+     * @param bool $all : (false or entry / true) Suspend all Accounts associated with a reseller (true by default)
      * @return string|bool: false on failure, result on success (JSON / XML)
      * status -> OK
      * status -> Error, msj -> account does not exist
@@ -119,7 +120,7 @@ trait Account
 
     /**
      * @param string $user : Account username
-     * @param bool $all : (false or emtry / true) Suspend all Accounts associated with a reseller (true by default)
+     * @param bool $all : (false or entry / true) Suspend all Accounts associated with a reseller (true by default)
      * @return string|bool: false on failure, result on success (JSON / XML)
      * status -> OK
      * status -> Error, msj -> account does not exist
@@ -177,6 +178,66 @@ trait Account
         $this->data['debug'] = $this->debug;
         $this->data['action'] = 'udp';
         $this->cwpuri = 'changepack';
+        return $this->execCurl();
+    }
+
+    /**
+     * @param string $user : Account username (If not specified, a list of accounts will be displayed)
+     * @param int $timer : Expiration time of the session, expressed in Minute, example 2
+     * @param string $module : Indicate the name of the module to be redirected
+     * @return string|bool: false on failure, result on success (JSON / XML)
+     * status -> OK
+     */
+    public function listAccountAutoLogin(string $user, int $timer, string $module)
+    {
+        $this->data = compact('user', 'timer', 'module');
+        $this->data['debug'] = $this->debug;
+        $this->data['action'] = 'list';
+        $this->cwpuri = 'user_session';
+        return $this->execCurl();
+    }
+
+    /**
+     * @param string $user : Account username to change password
+     * @param string $pass : New password (Must be greater than 8 characters)
+     * @return string|bool: false on failure, result on success (JSON / XML)
+     * status -> OK
+     * status -> Error, msj=> The package does not exist
+     */
+    public function updateAccountPassword(string $user, string $pass)
+    {
+        $this->data = compact('user', 'pass');
+        $this->data['action'] = 'udp';
+        $this->cwpuri = 'changepass';
+        return $this->execCurl();
+    }
+
+    /**
+     * @param string $user : Account username
+     * @return string|bool: false on failure, result on success (JSON / XML)
+     * status -> OK
+     * status -> Error -> user does not exist
+     */
+    public function listAccountMetadata(string $user)
+    {
+        $this->data = compact('user');
+        $this->data['action'] = 'list';
+        $this->cwpuri = 'account_metadata';
+        return $this->execCurl();
+    }
+
+    /**
+     * @param string $user : Account username
+     * @return string|bool: false on failure, result on success (JSON / XML)
+     * status -> OK, mysql->0/10, email->1/10, domain->3/10, ftp->1/5
+     * status -> Error, msj -> User does not exist
+     */
+    public function listAccountQuotasLimits(string $user)
+    {
+        $this->data = compact('user');
+        $this->data['debug'] = $this->debug;
+        $this->data['action'] = 'list';
+        $this->cwpuri = 'quotalimit';
         return $this->execCurl();
     }
 }

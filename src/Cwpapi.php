@@ -2,6 +2,8 @@
 
 namespace Puerari\Cwp;
 
+use Exception;
+
 /**
  * @class Cwpapi
  * @package Puerari\Cwp
@@ -28,14 +30,19 @@ class Cwpapi
     private $debug;
 
     /** use Traits */
-    use Account, Domain;
+    use Account, Autossl, Cronjob, Domain, Email, Ftp, Mysql, Package, Server;
 
-    /** Cwpapi constructor. */
+    /** Cwpapi constructor.
+     * @param string $cwpurl
+     * @param string $apikey
+     * @param bool $sslverify
+     * @param bool $debug
+     * @throws Exception
+     */
     public function __construct(string $cwpurl, string $apikey, bool $sslverify = false, bool $debug = false)
     {
-        if (!filter_var($cwpurl, FILTER_VALIDATE_URL)) {
-            throw new \Exception('Invalid URL!');
-        }
+        if (!filter_var($cwpurl, FILTER_VALIDATE_URL))
+            throw new Exception('Invalid URL!');
         $urllen = strlen($cwpurl) - 1;
         $url = ($cwpurl[$urllen] == "/") ? mb_substr($cwpurl, 0, $urllen) : $cwpurl;
 

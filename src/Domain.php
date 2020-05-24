@@ -54,9 +54,24 @@ trait Domain
      */
     public function listDomains(string $user, string $type)
     {
-        $this->data = compact('op', 'reseller');
+        $this->data = compact('user', 'type');
         $this->data['action'] = 'list';
         $this->cwpuri = 'admindomains';
+        return $this->execCurl();
+    }
+
+    /**
+     * @param string $user : User name
+     * @param string $domain : Domain for mail user
+     * @return string|bool: false on failure, result on success (JSON / XML)
+     * status -> OK
+     */
+    public function createDkimDomain(string $user, string $domain)
+    {
+        $this->data = compact('user', 'domain');
+        $this->data['debug'] = $this->debug;
+        $this->data['action'] = 'add';
+        $this->cwpuri = 'dkim';
         return $this->execCurl();
     }
 }

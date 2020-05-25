@@ -62,12 +62,12 @@ trait Mysql
      * @param string $userdb : Database User
      * @param string $pass : Password for the database user
      * @param string $dbase : Data Base Name (Max 8 Characters)
-     * @param string $host : Name Host (%, Localhost, IP)
+     * @param string $host : Name Host (%, localhost, IP)
      * @return string|bool: false on failure, result on success (JSON / XML)
      * status -> OK
      * status -> Error, msj -> User already exists
      */
-    public function createMysqlUser(string $user, string $userdb, string $pass, string $dbase, string $host)
+    public function createMysqlUser(string $user, string $userdb, string $pass, string $dbase, string $host = 'localhost')
     {
         $this->data = compact('user', 'userdb', 'pass', 'dbase', 'host');
         $this->data['debug'] = $this->debug;

@@ -55,7 +55,7 @@ class Cwpapi
     /**
      * @return bool|string
      */
-    public function execCurl()
+    protected function execCurl()
     {
         $this->data['key'] = $this->apikey;
         $url = $this->cwpurl . $this->cwpuri;

@@ -34,6 +34,8 @@ CWP API é um pacote PHP que abstrai a interação com o Painel de Controle de H
 
 CWP_API is available via Composer:
 
+add the following line on your composer.json file
+
 ```bash
 "puerari/cwp_api": "^1.0"
 ```
@@ -43,3 +45,66 @@ or run
 ```bash
 composer require puerari/cwp_api
 ```
+
+## Usage
+
+Follow the CWP documentation to enable API on your server:
+
+[https://docs.control-webpanel.com/docs/developer-tools/api-manager/configuration](https://docs.control-webpanel.com/docs/developer-tools/api-manager/configuration)
+
+Include the Composer autoloader file;
+
+```bash
+require_once 'vendor/autoload.php';
+```
+
+Instantiate the Cwpapi class
+
+```bash
+$cwpApi = new Cwpapi('https://yourcwpdomain.com', 'ApiKeyGenetedOnYouCwpAdminPanel');
+```
+
+Call the methods that solve your necessities.
+Each method is documented in its definition.
+
+See the official documentation on 
+[https://docs.control-webpanel.com/docs/developer-tools/api-manager](https://docs.control-webpanel.com/docs/developer-tools/api-manager)
+
+Example: how to create a new user account and a database associated with the created account.
+
+```bash
+$status = $cwpApi->createAccount('userdomain.com', 'username', 'userPassword', 'contact@userdomain.com', '123.456.789.0');
+if ((json_decode($status))->status != 'OK') {
+    exit((json_decode($status))->msj);
+}
+$status = $cwpApi->createMysqlDatabase('username', 'dbname');
+if ((json_decode($status))->status != 'OK') {
+    $cwpApi->deleteAccount('username', 'contact@userdomain.com');
+    exit((json_decode($status))->msj . ' The account was created, but due to this error we deleted it.');
+}
+// User account and database successfully created
+```
+
+## Support
+
+###### Security: If you discover any security related issues, please use the issue tracker on [GitHub](https://github.com/puerari/cwp_api/issues).
+
+Se você descobrir algum problema relacionado à segurança, por favor utilize o rastreador de problemas do [GitHub](https://github.com/puerari/cwp_api/issues).
+
+## Credits
+
+- [Leandro Puerari](https://github.com/puerari) (Developer)
+- [Contributors](https://github.com/puerari/cwp_api/contributors)
+- [CentOS Web Panel](https://centos-webpanel.com/)
+
+## License
+
+The MIT License (MIT). Please see [License File](https://github.com/puerari/cwp_api/blob/master/LICENSE) for more information.
+
+## Contributing
+
+Please see [contributing page](https://github.com/puerari/cwp_api/blob/master/CONTRIBUTING.md) for details.
+
+## Thank You
+
+**Let's Code...**

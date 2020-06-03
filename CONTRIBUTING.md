@@ -2,7 +2,7 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on [Github](https://github.com/puerari/cwp_api).
+We accept contributions through  Pull Requests on [Github](https://github.com/puerari/cwp_api).
 
 ## Pull Requests
 
@@ -12,4 +12,4 @@ We accept contributions via Pull Requests on [Github](https://github.com/puerari
 - **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
 - **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please squash them before submitting.
 
-**Let's Code**!
+**Let's Code...**

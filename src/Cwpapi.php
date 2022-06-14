@@ -46,7 +46,7 @@ class Cwpapi
         $urllen = strlen($cwpurl) - 1;
         $url = ($cwpurl[$urllen] == "/") ? mb_substr($cwpurl, 0, $urllen) : $cwpurl;
 
-        $this->cwpurl = $url . ':2304/v1/';
+        $this->cwpurl = $url . '/v1/';
         $this->apikey = $apikey;
         $this->sslverify = $sslverify;
         $this->debug = intval($debug);
